@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://djqhrkya7mqq4"]
+
+[ext_resource type="Script" uid="uid://pnssavuaginx" path="res://game.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://uydvs7m73g6r" path="res://paddle.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cnv7bxdshhgip" path="res://ball.gd" id="2_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2golg"]
+
+[node name="Game" type="Node2D" unique_id=1894575030]
+script = ExtResource("1_h2yge")
+
+[node name="PaddleLeft" parent="." unique_id=2080169715 instance=ExtResource("1_ig7tw")]
+position = Vector2(50, 369)
+up_action = &"paddle_left_up"
+down_action = &"paddle_left_down"
+
+[node name="PaddleRight" parent="." unique_id=1099200964 instance=ExtResource("1_ig7tw")]
+position = Vector2(1100, 369)
+up_action = &"paddle_right_up"
+down_action = &"paddle_right_down"
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=70745796]
+position = Vector2(576, 369)
+script = ExtResource("2_0xm2m")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ball" unique_id=432830450]
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1890176625]
+shape = SubResource("RectangleShape2D_2golg")
+
+[node name="UpWall" type="Polygon2D" parent="." unique_id=1197888212]
+position = Vector2(0, 90)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 10, 0, 10)
+
+[node name="DownWall" type="Polygon2D" parent="." unique_id=45927106]
+position = Vector2(0, 638)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 10, 0, 10)
+
+[node name="ScoreLeft" type="Label" parent="." unique_id=1480906922]
+offset_left = 250.0
+offset_right = 450.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreRight" type="Label" parent="." unique_id=261080154]
+offset_left = 702.0
+offset_right = 902.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
